@@ -9,7 +9,6 @@ console.log(process.env)
 // Create the connection pool. The pool-specific settings are the defaults
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
@@ -23,6 +22,7 @@ app.get("/helloworld", function (req, res, next) {
 
 app.get("/attractions", function (reg, res, next) {
   pool.query("SELECT * FROM attractions", function (err, rows, fields) {
+    console.log(err)
     res.json(rows);
   });
 });
